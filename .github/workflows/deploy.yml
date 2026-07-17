@@ -29,7 +29,7 @@ jobs:
         run: |
           # extract tag part of github.ref
           PUSHED_VERSION=$(cut -d'/' -f3 <<< "$GITHUB_REF")
-          LATEST_RELEASED_VERSION=$(curl -s https://raw.githubusercontent.com/netz98/n98-magerun/master/version.txt | tr -d '[:space:]')
+          LATEST_RELEASED_VERSION=$(curl -s https://raw.githubusercontent.com/OpenMage/om-magerun/master/version.txt | tr -d '[:space:]')
           echo "pushed_version=$PUSHED_VERSION" >> $GITHUB_ENV
           echo "latest_released_version=$LATEST_RELEASED_VERSION" >> $GITHUB_ENV
       - uses: jackbilestech/semver-compare@1.0.4
