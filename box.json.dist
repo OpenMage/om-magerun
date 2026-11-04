@@ -5,7 +5,8 @@
     "files": [
         "config.yaml",
         "src/bootstrap.php",
-        "vendor/composer/installed.php"
+        "vendor/composer/installed.php",
+        "vendor/nesbot/carbon/src/Carbon/Traits/Test.php"
     ],
     "force-autodiscovery": true,
     "directories": [

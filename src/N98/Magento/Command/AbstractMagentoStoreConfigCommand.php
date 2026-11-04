@@ -123,14 +123,12 @@ abstract class AbstractMagentoStoreConfigCommand extends AbstractMagentoCommand
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         // for backwards compatibility before v3.0
-        // @phpstan-ignore function.alreadyNarrowedType
-        if (property_exists($this, 'commandName')) {
+        if ($this->commandName !== '') {
             $output->writeln('<warning>Property "commandName" is deprecated, use "public static $defaultName"</warning>');
         }
 
         // for backwards compatibility before v3.0
-        // @phpstan-ignore function.alreadyNarrowedType
-        if (property_exists($this, 'commandDescription')) {
+        if ($this->commandDescription !== '') {
             $output->writeln('<warning>Property "commandDescription" is deprecated, use "public static $defaultDescription"</warning>');
         }
 
