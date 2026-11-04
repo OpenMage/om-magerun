@@ -13,38 +13,38 @@
         "magerun"
     ],
     "require": {
-        "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "^7.4 || ^8.0",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*",
         "ext-pdo": "*",
         "ext-simplexml": "*",
         "ext-zip": "*",
-        "fakerphp/faker": "^1.20",
+        "fakerphp/faker": "^1.24",
         "n98/junit-xml": "~1.0",
         "nesbot/carbon": "^2.73",
-        "psy/psysh": "~0.4",
-        "rmccue/requests": "^2.0.11",
+        "psy/psysh": "^0.12",
+        "rmccue/requests": "^2.0.21",
         "symfony/console": "^5.4 || ^6.4",
         "symfony/event-dispatcher": "^5.4 || ^6.4",
         "symfony/finder": "^5.4 || ^6.4",
-        "symfony/polyfill-php80": "^1.30",
+        "symfony/polyfill-php80": "^1.31",
         "symfony/process": "^5.4 || ^6.4",
         "symfony/validator": "^5.4 || ^6.4",
         "symfony/yaml": "^5.4 || ^6.4",
         "twig/twig": "^3.7.1"
     },
     "require-dev": {
-        "bamarni/symfony-console-autocomplete": "^1.2.0",
-        "composer/composer": "^2.7",
-        "friendsofphp/php-cs-fixer": "^3.4",
-        "mikey179/vfsstream": "^1.6",
-        "phpstan/phpstan": "^2.0",
-        "phpstan/phpstan-phpunit": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0",
-        "phpunit/phpunit": "^9",
-        "rector/rector": "^2",
-        "seld/phar-utils": "~1.2.0"
+        "bamarni/symfony-console-autocomplete": "^1.5.0",
+        "composer/composer": "^2.11",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "mikey179/vfsstream": "^1.6.12",
+        "phpstan/phpstan": "^2.3",
+        "phpstan/phpstan-phpunit": "^2.1",
+        "phpstan/phpstan-symfony": "^2.1",
+        "phpunit/phpunit": "^9.6",
+        "rector/rector": "^2.8",
+        "seld/phar-utils": "^1.2.3"
     },
     "autoload": {
         "psr-4": {
@@ -77,6 +77,13 @@
     "config": {
         "platform": {
             "php": "7.4.0"
+        },
+        "policy": {
+            "advisories": {
+                "ignore": [
+                    "twig/twig"
+                ]
+            }
         },
         "sort-packages": true
     },

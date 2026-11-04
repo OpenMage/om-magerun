@@ -6,10 +6,11 @@
 set -euo pipefail
 
 IFS=$'\n\t'
-PHP_BIN="php"
-BOX_BIN="./box.phar"
-PHAR_OUTPUT_FILE="./n98-magerun.phar"
-COMPOSER_BIN="composer"
+PHP_BIN="${PHP_BIN:-php}"
+PHP_FLAGS=(-dphar.readonly=0 -derror_reporting=6143)
+BOX_BIN="${BOX_BIN:-./box.phar}"
+PHAR_OUTPUT_FILE="${PHAR_OUTPUT_FILE:-./n98-magerun.phar}"
+COMPOSER_BIN="${COMPOSER_BIN:-composer}"
 
 function system_setup() {
   if [ "$(uname -s)" != "Darwin" ]; then
@@ -81,16 +82,13 @@ function create_new_phar() {
   # Run install again to get the latest install.php and install.json file
   $COMPOSER_BIN install
 
-  $PHP_BIN $BOX_BIN compile
+  $PHP_BIN "${PHP_FLAGS[@]}" $BOX_BIN compile
 
   # unset composer suffix
   $COMPOSER_BIN config autoloader-suffix --unset
 
-  # Set timestamp of newly generted phar file to the commit timestamp
-  $PHP_BIN -f build/phar/phar-timestamp.php -- $LAST_COMMIT_TIMESTAMP
-
-  # Run a signature verification after the timestamp manipulation
-  $PHP_BIN $BOX_BIN verify $PHAR_OUTPUT_FILE
+  # Run a signature verification of the compiled phar
+  $PHP_BIN "${PHP_FLAGS[@]}" $BOX_BIN verify $PHAR_OUTPUT_FILE
 
   # make phar executable
   chmod +x $PHAR_OUTPUT_FILE
@@ -105,7 +103,7 @@ function create_new_phar() {
 function print_info_before_build() {
   echo "with: $($PHP_BIN --version | head -n 1)"
   echo "with: $("${COMPOSER_BIN}" --version)"
-  echo "with: $("${BOX_BIN}" --version)"
+  echo "with: $($PHP_BIN "${PHP_FLAGS[@]}" "${BOX_BIN}" --version)"
   echo "build version: $(git --no-pager log --oneline -1)"
   echo "last commit timestamp: ${LAST_COMMIT_TIMESTAMP}"
   echo "provision: ulimits (soft) set from $(ulimit -Sn) to $(ulimit -Hn) (hard) for faster phar builds..."
