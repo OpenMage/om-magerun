@@ -352,13 +352,11 @@ class Application extends BaseApplication
             'for more information.', '']);
 
             return null;
-        } else {
-            $output->writeln([sprintf('<warning>Folder %s found, but not used in n98-magerun</warning>', $tempVarDir), '', 'This might cause serious problems. n98-magerun is using the configured var-folder ' .
-            sprintf('<comment>%s</comment>', $currentVarDir), 'Please refer to https://github.com/netz98/n98-magerun/wiki/File-system-permissions ' .
-            'for more information.', '']);
-
-            return false;
         }
+        $output->writeln([sprintf('<warning>Folder %s found, but not used in n98-magerun</warning>', $tempVarDir), '', 'This might cause serious problems. n98-magerun is using the configured var-folder ' .
+        sprintf('<comment>%s</comment>', $currentVarDir), 'Please refer to https://github.com/netz98/n98-magerun/wiki/File-system-permissions ' .
+        'for more information.', '']);
+        return false;
     }
 
     /**
