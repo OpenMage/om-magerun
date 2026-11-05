@@ -567,7 +567,7 @@ class Application extends BaseApplication
     {
         $this->_isInitialized       = false;
         $this->_magentoDetected     = false;
-        $this->_magentoRootFolder   = '';
+        $this->_magentoRootFolder   = null;
         $this->config               = null;
         $this->init($initConfig, $input, $output);
     }
