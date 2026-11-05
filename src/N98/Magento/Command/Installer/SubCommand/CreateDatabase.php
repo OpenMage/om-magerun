@@ -203,7 +203,7 @@ class CreateDatabase extends AbstractSubCommand
             $result = $stmt->fetchAll();
 
             // Check if database exists
-            if (is_array($result) && count($result) === 0) {
+            if (is_array($result) && $result === []) {
                 $pdo->query('CREATE DATABASE `' . $dbName . '`');
                 $output->writeln('<info>Created database ' . $dbName . '</info>');
                 $pdo->query('USE `' . $dbName . '`');
