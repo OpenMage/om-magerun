@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace N98\Magento\Command\Config;
 
 use Mage;
+use Mage_Core_Model_Config_Data;
 use Mage_Core_Model_Resource_Db_Collection_Abstract;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -123,6 +124,9 @@ HELP;
         $collection->addOrder('path', 'ASC');
 
         foreach ($collection as $item) {
+            /**
+             * @var Mage_Core_Model_Config_Data $item
+             */
             $paths[] = $item->getPath();
         }
 

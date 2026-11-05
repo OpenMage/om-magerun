@@ -31,12 +31,6 @@ parameters:
 			path: src/N98/Magento/Command/Eav/Attribute/ListCommand.php
 
 		-
-			message: '#^Parameter \#1 \$function of function call_user_func_array expects callable\(\)\: mixed, array\{\$this\(N98\\Magento\\Command\\System\\Check\\Settings\\CheckAbstract\), ''checkSettings''\} given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/N98/Magento/Command/System/Check/Settings/CheckAbstract.php
-
-		-
 			message: '#^Parameter \#2 \$callback of function array_filter expects \(callable\(array\{function\: string, line\?\: int, file\?\: string, class\?\: class\-string, type\?\: ''\-\>''\|''\:\:'', args\?\: list\<mixed\>, object\?\: object\}\)\: bool\)\|null, Closure\(mixed\)\: \(array\{function\: string, line\?\: int, file\: string, class\?\: class\-string, type\?\: ''\-\>''\|''\:\:'', args\?\: list\<mixed\>, object\?\: object\}\|false\) given\.$#'
 			identifier: argument.type
 			count: 1
