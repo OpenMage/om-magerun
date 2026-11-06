@@ -232,11 +232,11 @@ class MethodCommand extends AbstractMagentoCommand
         $modelName = $this->_input->getArgument('modelName');
 
         $model = Mage::getModel($modelName);
-        
+
         if (!$model instanceof Mage_Core_Model_Abstract) {
             throw new InvalidArgumentException('Model ' . $modelName . ' not found!');
         }
-        
+
         $this->_mageModel = $model;
 
         $this->_mageModelTable = $this->_mageModel->getResource()

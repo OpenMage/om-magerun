@@ -18,7 +18,6 @@ use ReflectionMethod;
  */
 abstract class CheckAbstract implements StoreCheck
 {
-
     final public function __construct()
     {
         $this->initConfigPaths();
