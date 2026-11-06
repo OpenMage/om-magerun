@@ -114,7 +114,7 @@ class MethodCommand extends AbstractMagentoCommand
     {
         $getterSetter = [];
 
-        if (!$this->_mageModel) {
+        if (!$this->_mageModel instanceof \Mage_Core_Model_Abstract) {
             return $getterSetter;
         }
 

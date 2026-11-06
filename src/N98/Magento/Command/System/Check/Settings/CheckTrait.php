@@ -57,7 +57,7 @@ trait CheckTrait
             $arguments[] = $paramValues[$paramName];
         }
 
-        call_user_func_array($this->checkSettings(...), $arguments);
+        $this->checkSettings(...$arguments);
     }
 
     /**
