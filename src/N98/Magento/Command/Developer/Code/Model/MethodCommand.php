@@ -26,10 +26,7 @@ class MethodCommand extends AbstractMagentoCommand
 
     protected OutputInterface $_output;
 
-    /**
-     * @var Mage_Core_Model_Abstract|false
-     */
-    protected $_mageModel;
+    protected ?Mage_Core_Model_Abstract $_mageModel = null;
 
     protected ?string $_mageModelTable;
 
@@ -117,7 +114,7 @@ class MethodCommand extends AbstractMagentoCommand
     {
         $getterSetter = [];
 
-        if (!$this->_mageModel) {
+        if (!$this->_mageModel instanceof \Mage_Core_Model_Abstract) {
             return $getterSetter;
         }
 
@@ -214,7 +211,7 @@ class MethodCommand extends AbstractMagentoCommand
 
     protected function checkClassFileName(): void
     {
-        if ($this->_mageModel === false) {
+        if (is_null($this->_mageModel)) {
             throw new InvalidArgumentException('No model set');
         }
 
@@ -234,10 +231,13 @@ class MethodCommand extends AbstractMagentoCommand
     {
         $modelName = $this->_input->getArgument('modelName');
 
-        $this->_mageModel = Mage::getModel($modelName);
-        if (!$this->_mageModel) {
+        $model = Mage::getModel($modelName);
+
+        if (!$model instanceof Mage_Core_Model_Abstract) {
             throw new InvalidArgumentException('Model ' . $modelName . ' not found!');
         }
+
+        $this->_mageModel = $model;
 
         $this->_mageModelTable = $this->_mageModel->getResource()
             ? $this->_mageModel->getResource()->getMainTable() : null;

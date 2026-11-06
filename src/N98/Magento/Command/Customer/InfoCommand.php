@@ -61,8 +61,10 @@ class InfoCommand extends AbstractCustomerCommand
 
             try {
                 $attribute = $customer->getResource()->getAttribute($key);
-                $key = $attribute instanceof Mage_Customer_Model_Attribute ? $attribute->getFrontend()->getLabel() : $key;
-                $value = $attribute instanceof Mage_Customer_Model_Attribute ? $attribute->getFrontend()->getValue($customer) : $value;
+                if ($attribute instanceof Mage_Customer_Model_Attribute) {
+                    $key = $attribute->getFrontend()->getLabel();
+                    $value = $attribute->getFrontend()->getValue($customer);
+                }
 
                 if (is_array($value)) {
                     $value = implode(' - ', $value);

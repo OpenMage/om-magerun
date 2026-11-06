@@ -89,11 +89,11 @@ class ConfigurationLoader
         return $config;
     }
 
-    public function loadStageTwo(string $magentoRootFolder, bool $loadExternalConfig = true, string $magerunStopFileFolder = ''): void
+    public function loadStageTwo(?string $magentoRootFolder, bool $loadExternalConfig = true, string $magerunStopFileFolder = ''): void
     {
         $config = $this->_initialConfig;
         $config = $this->loadDistConfig($config);
-        if ($loadExternalConfig) {
+        if (!is_null($magentoRootFolder) && $loadExternalConfig) {
             $config = $this->loadPluginConfig($config, $magentoRootFolder);
             $config = $this->loadSystemConfig($config);
             $config = $this->loadUserConfig($config, $magentoRootFolder);

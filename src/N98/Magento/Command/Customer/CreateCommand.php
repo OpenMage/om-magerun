@@ -76,8 +76,8 @@ class CreateCommand extends AbstractCustomerCommand
         if (!$mageCustomerModelCustomer->getId()) {
             $mageCustomerModelCustomer->setWebsiteId((int) $website->getId());
             $mageCustomerModelCustomer->setEmail($email);
-            $mageCustomerModelCustomer->setFirstname($firstname);   # @phpstan-ignore method.notFound (missing in current OpenMage)
-            $mageCustomerModelCustomer->setLastname($lastname);     # @phpstan-ignore method.notFound (missing in current OpenMage)
+            $mageCustomerModelCustomer->setFirstname($firstname);
+            $mageCustomerModelCustomer->setLastname($lastname);
             $mageCustomerModelCustomer->setPassword($password);
             $mageCustomerModelCustomer->save();
             $mageCustomerModelCustomer->setConfirmation(null);

@@ -272,6 +272,7 @@ class DatabaseHelper extends AbstractHelper
                 $entry = str_replace('_', '\\_', $entry);
                 $entry = str_replace('*', '%', $entry);
                 $entry = str_replace('?', '_', $entry);
+                /** @var string $entry */
                 $sth->execute(
                     [':like' => $this->dbSettings['prefix'] . $entry],
                 );

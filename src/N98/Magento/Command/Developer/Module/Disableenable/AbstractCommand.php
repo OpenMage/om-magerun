@@ -71,6 +71,10 @@ class AbstractCommand extends AbstractMagentoCommand
         $modulesNode = $this->modulesConfig->getNode('modules');
         if ($modulesNode) {
             $modules = $modulesNode->asArray();
+            if (is_string($modules)) {
+                throw new InvalidArgumentException('Modules node is not an array');
+            }
+
             foreach ($modules as $module => $data) {
                 if (isset($data['codePool']) && $data['codePool'] == $codePool) {
                     $this->enableModule($module, $output);

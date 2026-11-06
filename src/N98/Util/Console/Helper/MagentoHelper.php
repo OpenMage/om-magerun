@@ -20,7 +20,7 @@ use Symfony\Component\Finder\Finder;
  */
 class MagentoHelper extends AbstractHelper
 {
-    protected string $_magentoRootFolder = '';
+    protected ?string $_magentoRootFolder = null;
 
     protected int $_magentoMajorVersion = 1;
 
@@ -98,7 +98,7 @@ class MagentoHelper extends AbstractHelper
         return false;
     }
 
-    public function getRootFolder(): string
+    public function getRootFolder(): ?string
     {
         return $this->_magentoRootFolder;
     }

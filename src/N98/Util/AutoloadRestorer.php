@@ -41,7 +41,7 @@ class AutoloadRestorer
         $unregistered   = [];
         $current        = spl_autoload_functions();
 
-        if (!$this->snapshot || $current === [] || $current === false) {
+        if (!$this->snapshot || $current === []) {
             return $unregistered;
         }
 

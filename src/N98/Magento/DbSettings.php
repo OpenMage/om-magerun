@@ -25,6 +25,8 @@ use Traversable;
  * @package N98\Magento
  *
  * @author Tom Klingenberg (https://github.com/ktomk)
+ *
+ * @implements ArrayAccess<string, ?string>
  */
 class DbSettings implements ArrayAccess, IteratorAggregate
 {
@@ -341,9 +343,9 @@ class DbSettings implements ArrayAccess, IteratorAggregate
     }
 
     /**
-     * @return mixed Can return all value types.
+     * @return string|null Can return all value types.
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): ?string
     {
         if (isset($this->config[$offset])) {
             return $this->config[$offset];
@@ -353,8 +355,8 @@ class DbSettings implements ArrayAccess, IteratorAggregate
     }
 
     /**
-     * @param mixed $offset
-     * @param mixed $value
+     * @param string $offset
+     * @param ?string $value
      *
      * @throws BadMethodCallException
      */
@@ -364,7 +366,7 @@ class DbSettings implements ArrayAccess, IteratorAggregate
     }
 
     /**
-     * @param mixed $offset
+     * @param string $offset
      *
      * @throws BadMethodCallException
      */

@@ -95,8 +95,8 @@ HELP;
             if (!$customer->getId()) {
                 $customer->setWebsiteId((int) $website->getId());
                 $customer->setEmail($email);
-                $customer->setFirstname($generator->firstName); # @phpstan-ignore method.notFound (missing in current OpenMage)
-                $customer->setLastname($generator->lastName);   # @phpstan-ignore method.notFound (missing in current OpenMage)
+                $customer->setFirstname($generator->firstName);
+                $customer->setLastname($generator->lastName);
                 $customer->setPassword($password);
                 if ($input->hasOption('with-addresses')) {
                     $address = $this->createAddress($generator);
@@ -142,14 +142,14 @@ HELP;
             ->addCountryCodeFilter($faker->countryCode, 'iso2')
             ->getFirstItem();
 
-        $regions = $country->getRegions()->getData(); # @phpstan-ignore method.notFound (missing in current OpenMage)
+        $regions = $country->getRegions()->getData();
         $region = $regions ? $regions[array_rand($regions)] : null;
 
         $mageCustomerModelAddress = $this->getAddressModel();
         $mageCustomerModelAddress->setFirstname($faker->firstName);
         $mageCustomerModelAddress->setLastname($faker->lastName);
         $mageCustomerModelAddress->setCity($faker->city);
-        $mageCustomerModelAddress->setCountryId($country->getId());
+        $mageCustomerModelAddress->setCountryId((string) $country->getId());
         if ($region) {
             $mageCustomerModelAddress->setRegionId($region['region_id']);
         }

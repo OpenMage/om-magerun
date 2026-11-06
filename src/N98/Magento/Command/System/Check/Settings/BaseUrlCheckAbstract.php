@@ -16,6 +16,8 @@ use N98\Magento\Command\System\Check\Result;
  */
 abstract class BaseUrlCheckAbstract extends CheckAbstract
 {
+    use CheckTrait;
+
     protected string $class = 'abstract';
 
     protected function initConfigPaths(): void

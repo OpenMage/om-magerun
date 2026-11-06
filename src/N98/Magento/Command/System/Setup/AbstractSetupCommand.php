@@ -45,7 +45,12 @@ class AbstractSetupCommand extends AbstractMagentoCommand
 
         $modules = $config->getNode('modules');
         if ($modules) {
-            foreach ($modules->asArray() as $moduleName => $data) {
+            $result = $modules->asArray();
+            if (is_string($result)) {
+                throw new InvalidArgumentException('Modules node is not an array');
+            }
+
+            foreach ($result as $moduleName => $data) {
                 if (strtolower($moduleName) === strtolower($input->getArgument('module'))) {
                     return $moduleName;
                 }

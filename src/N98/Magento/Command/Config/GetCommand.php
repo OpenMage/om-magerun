@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace N98\Magento\Command\Config;
 
+use Mage_Core_Model_Config_Data;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -99,6 +100,9 @@ HELP;
         }
 
         foreach ($collection as $item) {
+            /**
+             * @var Mage_Core_Model_Config_Data $item
+             */
             $table[] = [
                 'path'     => $item->getPath(),
                 'scope'    => $item->getScope(),
