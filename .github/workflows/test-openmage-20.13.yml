@@ -1,18 +1,18 @@
-name: Test OpenMage 20.1.x
+name: Test OpenMage 20.10.x
 
 on:
   workflow_call:
   workflow_dispatch:
 
 jobs:
-  test-openmage-20-1-matrix:
+  test-openmage-20-13-matrix:
     name: OpenMage ${{ matrix.openmage_version }} / PHP ${{ matrix.php_version }} / MySQL ${{ matrix.mysql_version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        openmage_version: ["20.1.0"]
-        php_version: ["8.1", "7.4"]
+        openmage_version: ["20.13"]
+        php_version: ["8.3", "8.2", "8.1"]
         mysql_version: ["8.0", "5.7"]
 
     services:
@@ -81,9 +81,6 @@ jobs:
         env:
           COMPOSER_VENDOR_PATH : "${{ github.workspace }}/magento/vendor"
 
-        # Temporary allow tests to fail until code in OpenMage is fixed
-        continue-on-error: true
-
       - name: Report coverage
         uses: codecov/codecov-action@v5
         with:
@@ -92,8 +89,6 @@ jobs:
       - name: Run functional tests
         run: bats tests/bats/functional.bats
         env:
+          COMPOSER_VENDOR_PATH : "${{ github.workspace }}/magento/vendor"
           N98_MAGERUN_BIN: "${{ github.workspace }}/bin/n98-magerun"
           N98_MAGERUN_TEST_MAGENTO_ROOT: "${{ github.workspace }}/magento"
-
-        # Temporary allow tests to fail until code in OpenMage is fixed
-        continue-on-error: true
