@@ -64,6 +64,9 @@ class ListCommand extends AbstractMagentoCommand
         }
 
         $frontendEvents = $frontendEvents->asArray();
+        if (is_string($frontendEvents)) {
+            return Command::FAILURE;
+        }
         if (true === $input->getOption('sort')) {
             // sorting for Observers is a bad idea because the order in which observers will be called is important.
             ksort($frontendEvents);

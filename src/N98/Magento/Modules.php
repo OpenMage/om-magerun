@@ -40,6 +40,10 @@ class Modules implements IteratorAggregate, Countable
         $modulesNode = Mage::app()->getConfig()->getNode('modules');
         if ($modulesNode) {
             $modules = $modulesNode->asArray();
+            if (is_string($modules)) {
+                throw new \InvalidArgumentException('Modules node is not an array');
+            }
+
             foreach ($modules as $moduleName => $moduleInfo) {
                 $codePool   = $moduleInfo['codePool'] ?? '';
                 $version    = $moduleInfo['version'] ?? '';

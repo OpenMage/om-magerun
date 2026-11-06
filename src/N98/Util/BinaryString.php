@@ -11,6 +11,9 @@ namespace N98\Util;
  */
 class BinaryString
 {
+    /**
+     * @param non-empty-string $delimiter
+     */
     public static function trimExplodeEmpty(string $delimiter, string $string): array
     {
         /** @var list<string> $array */

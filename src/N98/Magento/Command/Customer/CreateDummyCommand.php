@@ -149,7 +149,7 @@ HELP;
         $mageCustomerModelAddress->setFirstname($faker->firstName);
         $mageCustomerModelAddress->setLastname($faker->lastName);
         $mageCustomerModelAddress->setCity($faker->city);
-        $mageCustomerModelAddress->setCountryId($country->getId());
+        $mageCustomerModelAddress->setCountryId((string)$country->getId());
         if ($region) {
             $mageCustomerModelAddress->setRegionId($region['region_id']);
         }

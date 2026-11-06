@@ -32,11 +32,13 @@ class ScriptLoader
 
         $this->_magentoRootFolder = $magentoRootFolder;
 
-        if (OperatingSystem::isWindows()) {
-            $scriptFolders[] = $this->homeDir . '/n98-magerun/scripts';
-        }
+        if ($this->homeDir !== false) {
+            if (OperatingSystem::isWindows()) {
+                $scriptFolders[] = $this->homeDir . '/n98-magerun/scripts';
+            }
 
-        $scriptFolders[] = $this->homeDir . '/.n98-magerun/scripts';
+            $scriptFolders[] = $this->homeDir . '/.n98-magerun/scripts';
+        }
 
         $this->findScripts($scriptFolders);
     }
@@ -104,7 +106,7 @@ class ScriptLoader
             return 'project';
         }
 
-        if (strstr($pathname, $this->homeDir)) {
+        if ($this->homeDir !== false && strstr($pathname, $this->homeDir)) {
             return 'personal';
         }
 

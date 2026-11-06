@@ -79,7 +79,12 @@ class OnCommand extends AbstractMagentoCommand
     {
         if (is_null($this->modules)) {
             $modulesNode = Mage::app()->getConfig()->getNode('modules');
-            $this->modules = $modulesNode ? $modulesNode->asArray() : [];
+            $result = $modulesNode ? $modulesNode->asArray() : [];
+            if (is_string($result)) {
+                throw new InvalidArgumentException('Modules node is not an array');
+            }
+
+            $this->modules = $result;
         }
 
         if (isset($this->modules[$moduleName])) {

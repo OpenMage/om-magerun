@@ -49,7 +49,7 @@ class ListCommand extends AbstractMagentoCommand
 
         $table = [];
         foreach ($cmsBlockCollection as $cmsBlock) {
-            $storeIds = implode(',', $resourceModel->lookupStoreIds($cmsBlock->getId()));
+            $storeIds = implode(',', $resourceModel->lookupStoreIds((int)$cmsBlock->getId()));
 
             $table[] = [$cmsBlock->getData('block_id'), $cmsBlock->getData('identifier'), $cmsBlock->getData('title'), $cmsBlock->getData('is_active') ? 'active' : 'inactive', $storeIds];
         }

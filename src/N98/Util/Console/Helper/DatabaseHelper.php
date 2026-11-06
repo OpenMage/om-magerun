@@ -272,8 +272,9 @@ class DatabaseHelper extends AbstractHelper
                 $entry = str_replace('_', '\\_', $entry);
                 $entry = str_replace('*', '%', $entry);
                 $entry = str_replace('?', '_', $entry);
+                /** @var string $entry */
                 $sth->execute(
-                    [':like' => $this->dbSettings['prefix'] . $entry],
+                    [':like' => strval($this->dbSettings['prefix']) . $entry],
                 );
                 $rows = $sth->fetchAll();
                 if ($rows) {
@@ -286,7 +287,7 @@ class DatabaseHelper extends AbstractHelper
             }
 
             if ($this->_tables && in_array($entry, $this->_tables)) {
-                $resolvedList[] = $this->dbSettings['prefix'] . $entry;
+                $resolvedList[] = strval($this->dbSettings['prefix']) . $entry;
             }
         }
 

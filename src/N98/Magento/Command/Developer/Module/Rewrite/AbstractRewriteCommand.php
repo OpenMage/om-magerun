@@ -61,9 +61,6 @@ abstract class AbstractRewriteCommand extends AbstractMagentoCommand
             $rewriteElements = $xml->xpath('//*/*/rewrite');
             foreach ($rewriteElements as $rewriteElement) {
                 $rewriteDomElement = dom_import_simplexml($rewriteElement);
-                if (!$rewriteDomElement) {
-                    continue;
-                }
 
                 $type = $rewriteDomElement->parentNode->parentNode->nodeName;
                 if (!isset($return[$type])) {
@@ -72,9 +69,6 @@ abstract class AbstractRewriteCommand extends AbstractMagentoCommand
 
                 foreach ($rewriteElement->children() as $child) {
                     $childDomElement    = dom_import_simplexml($rewriteElement);
-                    if (!$childDomElement) {
-                        continue;
-                    }
 
                     $groupClassName     = $childDomElement->parentNode->nodeName;
                     $modelName          = $child->getName();
